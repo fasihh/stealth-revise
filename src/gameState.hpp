@@ -26,24 +26,25 @@ public:
 };
 
 void GameState::initGameState() {
-    Object object1(sf::Vector2f{ 100.f, 120.f }, sf::Color::Green);
+    Object object1(sf::Vector2f{ 100.f, 300.f }, sf::Color::Green);
     object1.setPosition(sf::Vector2f{ 100.f, 100.f });
 
-    sf::Vector2f windowOutwardsPadding = sf::Vector2f{ 10.f, 10.f };
+    sf::Vector2f windowOutwardsPadding = sf::Vector2f{ /*10.f, 10.f*/ 0.f, 0.f };
     sf::Vector2f windowSize = static_cast<sf::Vector2f>(this->window->getSize());
-    Object window(windowSize + windowOutwardsPadding, sf::Color::Transparent);
+    Object window(windowSize /* + windowOutwardsPadding */, sf::Color::Transparent);
     window.setPosition(-0.5f * windowOutwardsPadding);
 
     this->objects.push_back(object1);
     this->objects.push_back(window);
 
     Entity *player = new Player(20.f, 120.f);
-    Entity *enemy = new Enemy(20.f, 100.f, player, windowSize);
+    player->setFillColor(sf::Color::Red);
+    Entity *enemy = new Enemy(20.f, 100.f, player);
     enemy->setPosition(300.f, 300.f);
     enemy->setFillColor(sf::Color::Green);
 
-    this->entities.push_back(player);
     this->entities.push_back(enemy);
+    this->entities.push_back(player);
 }
 
 GameState::GameState(sf::RenderWindow* window) :

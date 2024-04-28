@@ -13,6 +13,7 @@ public:
 
     sf::FloatRect getGlobalBounds() const;
     sf::Vector2f getPosition() const;
+    float getRadius() const;
 
     void setPosition(const sf::Vector2f position);
     void setPosition(const float x, const float y);
@@ -32,6 +33,7 @@ Entity::~Entity() {}
 
 sf::FloatRect Entity::getGlobalBounds() const { return this->entity.getGlobalBounds(); }
 sf::Vector2f Entity::getPosition() const { return this->entity.getPosition(); }
+float Entity::getRadius() const { return this->entity.getRadius(); }
 
 void Entity::setPosition(const sf::Vector2f position) { this->entity.setPosition(position); }
 void Entity::setPosition(const float x, const float y) { this->entity.setPosition(sf::Vector2f(x, y)); }

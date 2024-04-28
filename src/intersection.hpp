@@ -4,8 +4,7 @@
 struct Intersection {
     bool status;
     Point point;
-    float T1;
-    float angle;
+    float T1, angle;
     Intersection(
         bool s,
         float x = 0,
@@ -14,4 +13,6 @@ struct Intersection {
         float a = 0.f
     ) 
     : status(s), point(x, y), angle(a), T1(T1) {}
+
+    bool operator !() { return !status; }
 };

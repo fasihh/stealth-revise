@@ -7,12 +7,14 @@ struct Point {
     float x, y;
 
     Point(float x = 0.f, float y = 0.f) : x(x), y(y) {};
+    Point(sf::Vector2f position) : x(position.x), y(position.y) {}
+    
     sf::Vector2f vector();
     sf::Vertex vertex(sf::Color color = sf::Color::White);
 
-    // test
-    void display() {
-        std::cout << "{ " << x << ", " << y << " }" << std::endl;
+    Point& operator = (const sf::Vector2f& vector) {
+        this->x = vector.x, this->y = vector.y;
+        return *this;
     }
 };
 

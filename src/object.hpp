@@ -14,6 +14,7 @@ public:
     const std::vector<Point>& getVerticies();
     const std::vector<Line>& getSegments();
     void setPosition(sf::Vector2f position);
+    sf::Vector2f getPosition() const;
 
     void render(sf::RenderTarget* target = nullptr);
 };
@@ -47,6 +48,10 @@ const std::vector<Point>& Object::getVerticies() {
 const std::vector<Line>& Object::getSegments() {
     return this->segments;
 }
+
+sf::Vector2f Object::getPosition() const {
+    return this->object.getPosition();
+};
 
 void Object::setPosition(sf::Vector2f position) {
     this->object.setPosition(position);
