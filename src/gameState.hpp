@@ -27,7 +27,9 @@ public:
 
 void GameState::initGameState() {
     Object object1(sf::Vector2f{ 100.f, 300.f }, sf::Color::Green);
+    Object object2(sf::Vector2f{ 300.f, 100.f }, sf::Color::Green);
     object1.setPosition(sf::Vector2f{ 100.f, 100.f });
+    object2.setPosition(sf::Vector2f{ 400.f, 300.f });
 
     sf::Vector2f windowOutwardsPadding = sf::Vector2f{ /*10.f, 10.f*/ 0.f, 0.f };
     sf::Vector2f windowSize = static_cast<sf::Vector2f>(this->window->getSize());
@@ -35,6 +37,7 @@ void GameState::initGameState() {
     window.setPosition(-0.5f * windowOutwardsPadding);
 
     this->objects.push_back(object1);
+    this->objects.push_back(object2);
     this->objects.push_back(window);
 
     Entity *player = new Player(20.f, 120.f);
