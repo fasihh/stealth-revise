@@ -1,4 +1,4 @@
 @ECHO OFF
-make
-make clean
+mingw32-make
+mingw32-make clean
 main.exe
