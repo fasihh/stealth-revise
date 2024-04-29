@@ -98,6 +98,8 @@ void Player::update(const float& dt, std::vector<Object> objects) {
     else if (keys[3])
         this->velocity.x = this->maxVelocity;
 
+    // try
+
     this->move(this->velocity, dt);
 }
 
