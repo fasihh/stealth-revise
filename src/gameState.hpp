@@ -26,18 +26,94 @@ public:
 };
 
 void GameState::initGameState() {
-    Object object1(sf::Vector2f{ 100.f, 300.f }, sf::Color::Green);
-    Object object2(sf::Vector2f{ 300.f, 100.f }, sf::Color::Green);
-    object1.setPosition(sf::Vector2f{ 100.f, 100.f });
-    object2.setPosition(sf::Vector2f{ 400.f, 300.f });
+
+    //Middle Chowrangi
+    Object Chowrangi(sf::Vector2f(80.f,60.f),sf::Color::White);
+    Chowrangi.setPosition(sf::Vector2f(440.f,330.f));
+    //Middle Chowrangi End
+
+    //Borders
+    Object LeftBorder (sf::Vector2f(4.f,600.f),sf::Color::Green);
+    Object BottomBorder (sf::Vector2f(800.f,4.f),sf::Color::Blue);
+    BottomBorder.setPosition(sf::Vector2f(0.f,596.f));
+    Object TopBorder (sf::Vector2f(800.f,4.f),sf::Color::Red);
+    Object RightBorder (sf::Vector2f(4.f,600.f),sf::Color::Yellow);
+    RightBorder.setPosition(sf::Vector2f(796.f,0.f));
+    //Borders End
+
+    //Starting Area
+    Object l1(sf::Vector2f(270.f,10.f));
+    l1.setPosition(sf::Vector2f(4.f,60.f));
+    Object sh1(sf::Vector2f(100.f,100.f));
+    sh1.setPosition(sf::Vector2f(350.f,4.f));
+    Object l2(sf::Vector2f(10.f,120.f));
+    l2.setPosition(sf::Vector2f(274.f,60.f));
+    Object l3(sf::Vector2f(180.f,10.f));
+    l3.setPosition(sf::Vector2f(274.f,180.f));
+    Object l4(sf::Vector2f(10.f,120.f));
+    l4.setPosition(sf::Vector2f(520.f,64.f));
+    Object l5(sf::Vector2f(226.f,10.f));
+    l5.setPosition(sf::Vector2f(520.f,58.f));
+    Object l6(sf::Vector2f(212.f,10.f));
+    l6.setPosition(sf::Vector2f(584.f,130.f));
+    Object l7(sf::Vector2f(10.f,74.f));
+    l7.setPosition(sf::Vector2f(584.f,130.f));
+    Object l8(sf::Vector2f(74.f,10.f));
+    l8.setPosition(sf::Vector2f(520.f,184.f));
+    //Starting Area End
+
+    //East
+    Object l9(sf::Vector2f(10.f,300.f));
+    l9.setPosition(sf::Vector2f(274.f,149.f));
+    Object l14(sf::Vector2f(10.f,56.f));
+    l14.setPosition(sf::Vector2f(274.f,540.f));
+    Object l10(sf::Vector2f(10.f,56.f));
+    l10.setPosition(sf::Vector2f(182.f,140.f));
+    Object l15(sf::Vector2f(10.f,276.f));
+    l15.setPosition(sf::Vector2f(182.f,256.f));
+    Object l11(sf::Vector2f(10.f,198.f));
+    l11.setPosition(sf::Vector2f(91.f,140.f));
+    Object l16(sf::Vector2f(10.f,198.f));
+    l16.setPosition(sf::Vector2f(91.f,398.f));
+    Object l12(sf::Vector2f(92.f,10.f));
+    l12.setPosition(sf::Vector2f(182.f,140.f));
+    Object l13(sf::Vector2f(91.f,10.f));
+    l13.setPosition(sf::Vector2f(4.f,140.f));
+    //East End
+
+    //West
+    Object l17(sf::Vector2f(10.f,402.f));
+    l17.setPosition(sf::Vector2f(584.f,194.f));
+    //West End
 
     sf::Vector2f windowOutwardsPadding = sf::Vector2f{ /*10.f, 10.f*/ 0.f, 0.f };
     sf::Vector2f windowSize = static_cast<sf::Vector2f>(this->window->getSize());
     Object window(windowSize /* + windowOutwardsPadding */, sf::Color::Transparent);
     window.setPosition(-0.5f * windowOutwardsPadding);
 
-    this->objects.push_back(object1);
-    this->objects.push_back(object2);
+    this->objects.push_back(l2);
+    this->objects.push_back(l3);
+    this->objects.push_back(l4);
+    this->objects.push_back(l5);
+    this->objects.push_back(l6);
+    this->objects.push_back(l7);
+    this->objects.push_back(l8);
+    this->objects.push_back(l9);
+    this->objects.push_back(l10);
+    this->objects.push_back(l11);
+    this->objects.push_back(l12);
+    this->objects.push_back(l13);
+    this->objects.push_back(l14);
+    this->objects.push_back(l15);
+    this->objects.push_back(l16);
+    this->objects.push_back(l17);
+    this->objects.push_back(LeftBorder);
+    this->objects.push_back(TopBorder);
+    this->objects.push_back(BottomBorder);
+    this->objects.push_back(RightBorder);
+    this->objects.push_back(l1);
+    this->objects.push_back(Chowrangi);
+    this->objects.push_back(sh1);
     this->objects.push_back(window);
 
     Entity *player = new Player(20.f, 120.f);
