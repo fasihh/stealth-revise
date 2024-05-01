@@ -6,13 +6,12 @@
 
 // impl of state interface
 
-class GameState :
-    public State
-{
+class GameState : public State {
 private:
     std::vector<Entity *> entities;
     std::vector<Object> objects;
 
+    void initObjects();
     void initGameState();
 public:
     GameState(sf::RenderWindow* window);
@@ -25,8 +24,7 @@ public:
     void render(sf::RenderTarget* target = nullptr);
 };
 
-void GameState::initGameState() {
-
+void GameState::initObjects() {
     // //Middle Chowrangi
     Object Chowrangi(sf::Vector2f(80.f,60.f),sf::Color::White);
     Chowrangi.setPosition(sf::Vector2f(440.f,330.f));
@@ -102,7 +100,9 @@ void GameState::initGameState() {
     this->objects.push_back(Chowrangi);
     this->objects.push_back(sh1);
     this->objects.push_back(window);
+}
 
+void GameState::initGameState() {
     Entity *player = new Player(20.f, 120.f);
     player->setFillColor(sf::Color::Red);
     Entity *enemy = new Enemy(20.f, 100.f, player);
