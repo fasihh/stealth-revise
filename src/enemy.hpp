@@ -6,13 +6,9 @@
 #include "gameState.hpp"
 #include "intersection.hpp"
 
-class Enemy :
-    public Entity 
-{
+class Enemy : public Entity {
 private:
-    float detection;
     Entity *target;
-    Line ray;
 public:
     Enemy(const float radius, const float maxVelocity, Entity *target);
 
@@ -25,8 +21,7 @@ Enemy::Enemy(
     const float maxVelocity,
     Entity *target
 ) :
-    Entity(radius, maxVelocity), 
-    detection(radius * 10.f),
+    Entity(radius, maxVelocity),
     target(target)
 {}
 
@@ -43,15 +38,12 @@ void Enemy::update(const float& dt, std::vector<Object> objects) {
 
     // if enemy within player's light
     // chase player
-    if (!Utils::checkIntersection(entityToTarget, std::vector<Object>{ objects.begin(), objects.end()-1 })) {
-        sf::Vector2f dir = Utils::normalize(targetPos - entityPos);
-        this->velocity = dir*this->maxVelocity;
-    }
+    if (Line{ Utils::checkIntersection(entityToTarget, objects).point, entityPos } >= Line{ entityPos, targetPos })
+        this->velocity = Utils::normalize(targetPos - entityPos)*this->maxVelocity;
     
     this->move(this->velocity, dt);
 }
 
 void Enemy::render(sf::RenderTarget* target) {
     target->draw(this->entity);
-    // target->draw(this->ray.vertexArray(sf::Color::Red));
 }

@@ -27,21 +27,12 @@ public:
 
 void GameState::initGameState() {
 
-    //Middle Chowrangi
+    // //Middle Chowrangi
     Object Chowrangi(sf::Vector2f(80.f,60.f),sf::Color::White);
     Chowrangi.setPosition(sf::Vector2f(440.f,330.f));
-    //Middle Chowrangi End
+    // //Middle Chowrangi End
 
-    //Borders
-    Object LeftBorder (sf::Vector2f(4.f,600.f),sf::Color::Green);
-    Object BottomBorder (sf::Vector2f(800.f,4.f),sf::Color::Blue);
-    BottomBorder.setPosition(sf::Vector2f(0.f,596.f));
-    Object TopBorder (sf::Vector2f(800.f,4.f),sf::Color::Red);
-    Object RightBorder (sf::Vector2f(4.f,600.f),sf::Color::Yellow);
-    RightBorder.setPosition(sf::Vector2f(796.f,0.f));
-    //Borders End
-
-    //Starting Area
+    // //Starting Area
     Object l1(sf::Vector2f(270.f,10.f));
     l1.setPosition(sf::Vector2f(4.f,60.f));
     Object sh1(sf::Vector2f(100.f,100.f));
@@ -60,9 +51,9 @@ void GameState::initGameState() {
     l7.setPosition(sf::Vector2f(584.f,130.f));
     Object l8(sf::Vector2f(74.f,10.f));
     l8.setPosition(sf::Vector2f(520.f,184.f));
-    //Starting Area End
+    // //Starting Area End
 
-    //East
+    // //East
     Object l9(sf::Vector2f(10.f,300.f));
     l9.setPosition(sf::Vector2f(274.f,149.f));
     Object l14(sf::Vector2f(10.f,56.f));
@@ -79,16 +70,16 @@ void GameState::initGameState() {
     l12.setPosition(sf::Vector2f(182.f,140.f));
     Object l13(sf::Vector2f(91.f,10.f));
     l13.setPosition(sf::Vector2f(4.f,140.f));
-    //East End
+    // //East End
 
-    //West
+    // //West
     Object l17(sf::Vector2f(10.f,402.f));
     l17.setPosition(sf::Vector2f(584.f,194.f));
-    //West End
+    // //West End
 
-    sf::Vector2f windowOutwardsPadding = sf::Vector2f{ /*10.f, 10.f*/ 0.f, 0.f };
+    sf::Vector2f windowOutwardsPadding = sf::Vector2f{ 0.f, 0.f };
     sf::Vector2f windowSize = static_cast<sf::Vector2f>(this->window->getSize());
-    Object window(windowSize /* + windowOutwardsPadding */, sf::Color::Transparent);
+    Object window(windowSize, sf::Color::Transparent);
     window.setPosition(-0.5f * windowOutwardsPadding);
 
     this->objects.push_back(l2);
@@ -107,10 +98,6 @@ void GameState::initGameState() {
     this->objects.push_back(l15);
     this->objects.push_back(l16);
     this->objects.push_back(l17);
-    this->objects.push_back(LeftBorder);
-    this->objects.push_back(TopBorder);
-    this->objects.push_back(BottomBorder);
-    this->objects.push_back(RightBorder);
     this->objects.push_back(l1);
     this->objects.push_back(Chowrangi);
     this->objects.push_back(sh1);
