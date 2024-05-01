@@ -19,14 +19,14 @@ public:
     void setPosition(const sf::Vector2f position);
     void setPosition(const float x, const float y);
     void setFillColor(const sf::Color color);
-
+    void setRadius(const float radius);
 
     void move(const sf::Vector2f velocity, const float& dt);
     virtual void update(const float& dt, std::vector<Object> objects) = 0;
     virtual void render(sf::RenderTarget* target = nullptr) = 0;
 };
 
-Entity::Entity(const float radius, const float maxVelocity) : maxVelocity(maxVelocity) {
+Entity::Entity(const float radius = 0.f, const float maxVelocity = 0.f) : maxVelocity(maxVelocity) {
     this->entity.setRadius(radius);
 }
 
@@ -42,7 +42,7 @@ void Entity::checkCollisions(std::vector<Object> objects) {
         sf::FloatRect objectBounds = object.getGlobalBounds();
         if(objectBounds.intersects(entityBounds)) {
             //bottom collision
-            if (entityBounds.top < objectBounds.top && entityBounds.top + entityBounds.height < objectBounds.top + objectBounds.height && entityBounds.left < objectBounds.left+ objectBounds.width
+            if (entityBounds.top < objectBounds.top && entityBounds.top + entityBounds.height < objectBounds.top + objectBounds.height && entityBounds.left < objectBounds.left + objectBounds.width
             && entityBounds.left + entityBounds.width > objectBounds.left){
                 velocity.y = 0.f;
                 entity.setPosition(entityBounds.left, objectBounds.top - entityBounds.height);
@@ -50,7 +50,7 @@ void Entity::checkCollisions(std::vector<Object> objects) {
 
             //Top collision
             else if (entityBounds.top > objectBounds.top && entityBounds.top + entityBounds.height > objectBounds.top + objectBounds.height && entityBounds.left < objectBounds.left+ objectBounds.width
-            && entityBounds.left + entityBounds.width > objectBounds.left){
+            && entityBounds.left + entityBounds.width > objectBounds.left) {
                 velocity.y = 0.f;
                 entity.setPosition(entityBounds.left, objectBounds.top + objectBounds.height);
             }
@@ -81,6 +81,7 @@ sf::FloatRect Entity::getGlobalBounds() const { return this->entity.getGlobalBou
 sf::Vector2f Entity::getPosition() const { return this->entity.getPosition(); }
 float Entity::getRadius() const { return this->entity.getRadius(); }
 
+void Entity::setRadius(const float radius) { this->entity.setRadius(radius); }
 void Entity::setPosition(const sf::Vector2f position) { this->entity.setPosition(position); }
 void Entity::setPosition(const float x, const float y) { this->entity.setPosition(sf::Vector2f(x, y)); }
 void Entity::setFillColor(const sf::Color color) { this->entity.setFillColor(color); }
