@@ -14,7 +14,7 @@ public:
     void render(sf::RenderTarget* target = nullptr) override;
 };
 
-Player::Player(const float radius, const float maxVelocity) : Entity(radius, maxVelocity) {}
+Player::Player(const float radius = 0.f, const float maxVelocity = 0.f) : Entity(radius, maxVelocity) {}
 
 Player::~Player() {}
 
@@ -51,8 +51,6 @@ void Player::update(const float& dt, std::vector<Object> objects) {
 
     // storing every intersection point in the vertices
     for (Intersection intersect : intersections)
-        // Line ray{ { entityPos.x, entityPos.y }, { intersect.point.x, intersect.point.y } };
-        // rays.push_back(ray);
         this->vertices.emplace_back(intersect.point.vertex(sf::Color(255, 255, 255, alpha)));
     
     this->velocity *= 0.85f;
