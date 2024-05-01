@@ -9,6 +9,7 @@
 class Enemy : public Entity {
 private:
     Entity *target;
+    sf::Clock delay;
 public:
     Enemy(const float radius, const float maxVelocity, Entity *target);
 
@@ -17,9 +18,9 @@ public:
 };
 
 Enemy::Enemy(
-    const float radius,
-    const float maxVelocity,
-    Entity *target
+    const float radius = 0.f,
+    const float maxVelocity = 0.f,
+    Entity *target = nullptr
 ) :
     Entity(radius, maxVelocity),
     target(target)
@@ -40,6 +41,12 @@ void Enemy::update(const float& dt, std::vector<Object> objects) {
     // chase player
     if (Line{ Utils::checkIntersection(entityToTarget, objects).point, entityPos } >= Line{ entityPos, targetPos })
         this->velocity = Utils::normalize(targetPos - entityPos)*this->maxVelocity;
+
+    if (Line{ entityPos, targetPos }.distance() <= target->getRadius())
+        if (delay.getElapsedTime().asSeconds() >= 2)
+            Enemy::status = -1;
+    else
+        delay.restart();
     
     this->move(this->velocity, dt);
     this->checkCollisions(objects);

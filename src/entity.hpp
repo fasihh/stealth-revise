@@ -9,6 +9,7 @@ protected:
 
     void checkCollisions(std::vector<Object> objects);
 public:
+    static int status;
     Entity(const float radius, const float maxVelocity);
     virtual ~Entity();
 
@@ -25,6 +26,8 @@ public:
     virtual void update(const float& dt, std::vector<Object> objects) = 0;
     virtual void render(sf::RenderTarget* target = nullptr) = 0;
 };
+
+int Entity::status = 0;
 
 Entity::Entity(const float radius = 0.f, const float maxVelocity = 0.f) : maxVelocity(maxVelocity) {
     this->entity.setRadius(radius);
