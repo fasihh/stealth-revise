@@ -2,7 +2,7 @@
 #include "state.hpp"
 #include "player.hpp"
 #include "enemy.hpp"
-#include "object.hpp" // I wanna kms
+#include "object.hpp"
 
 // impl of state interface
 
@@ -105,11 +105,12 @@ void GameState::initObjects() {
 void GameState::initGameState() {
     Entity *player = new Player(20.f, 120.f);
     player->setFillColor(sf::Color::Red);
-    Entity *enemy = new Enemy(20.f, 100.f, player);
-    enemy->setPosition(300.f, 300.f);
-    enemy->setFillColor(sf::Color::Green);
+    
+    Entity *enemy1 = new Enemy(20.f, 100.f, player);
+    enemy1->setPosition(300.f, 300.f);
+    enemy1->setFillColor(sf::Color::Green);
 
-    this->entities.push_back(enemy);
+    this->entities.push_back(enemy1);
     this->entities.push_back(player);
 }
 
@@ -126,7 +127,7 @@ GameState::~GameState() {
 }
 
 void GameState::endState() {
-    std::cout << "Ending GameState" << std::endl;
+    std::cout << "Game Over" << std::endl;
 }
 
 void GameState::updateKeyBinds(const float& dt) {
@@ -135,8 +136,10 @@ void GameState::updateKeyBinds(const float& dt) {
 
 void GameState::update(const float& dt) {
     this->updateKeyBinds(dt);
-    for (Entity *entity : this->entities)
+    for (Entity *entity : this->entities) {
+        
         entity->update(dt, this->objects);
+    }
 }
 
 void GameState::render(sf::RenderTarget* target) {
