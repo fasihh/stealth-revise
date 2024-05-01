@@ -116,7 +116,8 @@ void GameState::initGameState() {
 GameState::GameState(sf::RenderWindow* window) :
     State(window)
 {
-   this->initGameState();
+    this->initObjects();
+    this->initGameState();
 }
 
 GameState::~GameState() {

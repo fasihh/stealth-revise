@@ -1,12 +1,13 @@
 #pragma once
 #include "object.hpp"
 
-class Entity
-{
+class Entity {
 protected:
     sf::CircleShape entity;
     sf::Vector2f velocity;
     const float maxVelocity;
+
+    void checkCollisions(std::vector<Object> objects);
 public:
     Entity(const float radius, const float maxVelocity);
     virtual ~Entity();
@@ -30,6 +31,51 @@ Entity::Entity(const float radius, const float maxVelocity) : maxVelocity(maxVel
 }
 
 Entity::~Entity() {}
+
+void Entity::checkCollisions(std::vector<Object> objects) {
+    sf::FloatRect entityBounds = entity.getGlobalBounds();
+    sf::FloatRect nextPos = entityBounds;
+    nextPos.left += velocity.x;
+    nextPos.top += velocity.y;
+
+    for (Object object : objects) {
+        sf::FloatRect objectBounds = object.getGlobalBounds();
+        if(objectBounds.intersects(entityBounds)) {
+            //bottom collision
+            if (entityBounds.top < objectBounds.top && entityBounds.top + entityBounds.height < objectBounds.top + objectBounds.height && entityBounds.left < objectBounds.left+ objectBounds.width
+            && entityBounds.left + entityBounds.width > objectBounds.left){
+                velocity.y = 0.f;
+                entity.setPosition(entityBounds.left, objectBounds.top - entityBounds.height);
+            }
+
+            //Top collision
+            else if (entityBounds.top > objectBounds.top && entityBounds.top + entityBounds.height > objectBounds.top + objectBounds.height && entityBounds.left < objectBounds.left+ objectBounds.width
+            && entityBounds.left + entityBounds.width > objectBounds.left){
+                velocity.y = 0.f;
+                entity.setPosition(entityBounds.left, objectBounds.top + objectBounds.height);
+            }
+
+            //Right collision
+            if (entityBounds.left < objectBounds.left && entityBounds.left + entityBounds.width < objectBounds.left + objectBounds.width && entityBounds.top < objectBounds.top + objectBounds.height
+            && entityBounds.top + entityBounds.height > objectBounds.top){
+                velocity.x = 0.f;
+                entity.setPosition(objectBounds.left - entityBounds.width, entityBounds.top);
+            }
+
+                //left collision
+            else if (entityBounds.left > objectBounds.left &&
+                entityBounds.left + entityBounds.width > objectBounds.left + objectBounds.width && entityBounds.top < objectBounds.top + objectBounds.height && entityBounds.top + entityBounds.height > objectBounds.top){
+                velocity.x = 0.f;
+                entity.setPosition(objectBounds.left + objectBounds.width, entityBounds.top);
+            }
+        }
+    }
+
+    if(entity.getPosition().x < 0.f) entity.setPosition(0.f, entity.getPosition().y);
+    if(entity.getPosition().y < 0.f) entity.setPosition(entity.getPosition().x, 0.f);
+    if(entity.getPosition().x + entity.getRadius()*2 > 800) entity.setPosition(800 - entity.getRadius()*2, entity.getPosition().y);
+    if(entity.getPosition().y + entity.getRadius()*2 > 600) entity.setPosition(entity.getPosition().x, 600 - entity.getRadius()*2);
+}
 
 sf::FloatRect Entity::getGlobalBounds() const { return this->entity.getGlobalBounds(); }
 sf::Vector2f Entity::getPosition() const { return this->entity.getPosition(); }

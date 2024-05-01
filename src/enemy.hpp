@@ -42,6 +42,7 @@ void Enemy::update(const float& dt, std::vector<Object> objects) {
         this->velocity = Utils::normalize(targetPos - entityPos)*this->maxVelocity;
     
     this->move(this->velocity, dt);
+    this->checkCollisions(objects);
 }
 
 void Enemy::render(sf::RenderTarget* target) {

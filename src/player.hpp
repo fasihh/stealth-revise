@@ -3,17 +3,15 @@
 #include "intersection.hpp"
 #include "utils.hpp"
 
-class Player :
-    public Entity
-{
+class Player : public Entity {
 private:
     std::vector<sf::Vertex> vertices;
 public:
     Player(const float radius, const float maxVelocity);
     virtual ~Player();
 
-    void update(const float& dt, std::vector<Object> objects);
-    void render(sf::RenderTarget* target = nullptr);
+    void update(const float& dt, std::vector<Object> objects) override;
+    void render(sf::RenderTarget* target = nullptr) override;
 };
 
 Player::Player(const float radius, const float maxVelocity) : Entity(radius, maxVelocity) {}
@@ -101,6 +99,7 @@ void Player::update(const float& dt, std::vector<Object> objects) {
     // try
 
     this->move(this->velocity, dt);
+    this->checkCollisions(objects);
 }
 
 void Player::render(sf::RenderTarget* target) {

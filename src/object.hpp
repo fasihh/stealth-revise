@@ -13,6 +13,8 @@ public:
 
     const std::vector<Point>& getVerticies();
     const std::vector<Line>& getSegments();
+    const sf::FloatRect getGlobalBounds();
+
     void setPosition(sf::Vector2f position);
     sf::Vector2f getPosition() const;
 
@@ -37,12 +39,14 @@ Object::Object(sf::Vector2f size, sf::Color color) :
     this->object.setFillColor(color);
 }
 
-Object::~Object() {
-
-}
+Object::~Object() {}
 
 const std::vector<Point>& Object::getVerticies() {
     return this->vertices;
+}
+
+const sf::FloatRect Object::getGlobalBounds() {
+    return this->object.getGlobalBounds();
 }
 
 const std::vector<Line>& Object::getSegments() {
