@@ -137,7 +137,10 @@ void GameState::updateKeyBinds(const float& dt) {
 void GameState::update(const float& dt) {
     this->updateKeyBinds(dt);
     for (Entity *entity : this->entities) {
-        
+        if (entity->status == -1) {
+            this->endStatus = true;
+            return;
+        }
         entity->update(dt, this->objects);
     }
 }
