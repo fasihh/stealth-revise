@@ -15,4 +15,6 @@ There are 2 entities loaded onto a pre made map, the player and the enemy, both 
 
 ## Code Explaination:
 
-https://youtu.be/L8_rDG3zCGM
+<a href="https://www.youtube.com/watch?v=L8_rDG3zCGM" target="_blank">
+ <img src="http://img.youtube.com/vi/qwrpa14n4bs/maxresdefault.jpg" alt="Watch the video" width="900" height="500" border="10" />
+</a>
